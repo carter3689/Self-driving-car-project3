@@ -1,6 +1,7 @@
 import csv
 import cv2
 import numpy as np
+from keras.preprocessing.image import img_to_array, load_img
 lines = []
 with open('./data/driving_log_1.csv')as csvfile:
     reader = csv.reader(csvfile)
@@ -63,8 +64,6 @@ model.add(Cropping2D(cropping=((70,25),(0,0))))
 model.add(Convolution2D(24,5,5,subsample=(2,2),activation="elu"))
 model.add(Convolution2D(36,5,5,subsample=(2,2),activation="elu"))
 model.add(Convolution2D(48,5,5,subsample=(2,2),activation="elu"))
-model.add(Convolution2D(64,3,3,activation="elu"))
-model.add(Convolution2D(64,3,3,activation="elu"))
 model.add(Flatten())
 model.add((Dense(100)))
 model.add(BatchNormalization())
